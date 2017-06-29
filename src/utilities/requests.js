@@ -13,13 +13,14 @@ export function deleteQuestion (id) {
 }
 
 
-export function postQuestion (questionFormData) {
+export function postQuestion (data) {
   const headers = new Headers({
-    'Authorization':`Apikey ${API_KEY}`
+    'Authorization':`Apikey ${API_KEY}`,
+    'Content-Type':'application/json'
   });
   return fetch(`${BASE_URL}/questions`, {
     method: 'POST',
-    body: questionFormData,
+    body: JSON.stringify({question: data}),
     headers
   })
     .then(res => res.json());
