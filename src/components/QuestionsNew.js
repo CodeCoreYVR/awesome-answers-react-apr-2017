@@ -13,7 +13,7 @@ class QuestionsNew extends Component {
   createQuestion = data => {
     postQuestion(data)
       .then(({id}) => {
-        this.setState({id})
+        this.props.history.push(`/questions/${id}`);
       });
   }
 
@@ -21,7 +21,6 @@ class QuestionsNew extends Component {
     const {id} = this.state;
     return (
       <div className="QuestionsNew">
-        {id && <Redirect to={`/questions/${id}`} />}
         <h1>New Question</h1>
         <QuestionForm onSubmit={this.createQuestion} />
       </div>
